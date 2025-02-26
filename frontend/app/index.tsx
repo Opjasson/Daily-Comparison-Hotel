@@ -1,11 +1,15 @@
-import { Text, View } from "react-native";
+import {
+    NavigationContainer,
+    NavigationIndependentTree,
+} from "@react-navigation/native";
+import Route from "./Routes";
 
 export default function Index() {
-  return (
-    <View>
-      <Text>
-        Hallo world
-      </Text>
-    </View>
-  );
+    return (
+        <NavigationIndependentTree>
+            <NavigationContainer>
+                <Route />
+            </NavigationContainer>
+        </NavigationIndependentTree>
+    );
 }

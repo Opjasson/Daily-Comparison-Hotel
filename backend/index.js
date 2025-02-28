@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import db from "./config/database.js";
 import data from "./models/dataModels.js";
 import dataRoute from "./routes/dataRoute.js";
+import cors from "cors"
 
 dotenv.config();
 const app = express();
@@ -11,6 +12,14 @@ const app = express();
 // (async () => {
 //     await data.sync();
 // })();
+
+app.use(
+    cors({
+        credentials: true,
+        origin: "http"
+    })
+)
+
 
 app.use(express.json());
 app.use(dataRoute);

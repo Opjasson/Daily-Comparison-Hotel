@@ -1,9 +1,10 @@
 import express from "express";
-import { addData, getData } from "../controllers/dataController.js";
+import { addData, getData, updateData } from "../controllers/dataController.js";
 
 const router = express.Router();
 
 router.get("/data", getData);
-router.post("/data", addData)
+router.post("/data", addData);
+router.patch("/data/:id", updateData)
 
 export default router;

@@ -1,10 +1,11 @@
 import { response } from "express";
 import dataModel from "../models/dataModels.js";
+import { where } from "sequelize";
 
 export async function getData(req, res) {
     try {
         const response = await dataModel.findAll({
-            attributes: ["uuid", "hotel", "RNO", "ARR", "RNA", "RR"],
+            attributes: ["hotel", "RNO", "ARR", "RNA", "RR"],
         });
         res.status(200).json(response);
     } catch (error) {
@@ -13,15 +14,15 @@ export async function getData(req, res) {
 }
 
 export async function addData(req, res) {
-    const { hotel, RNO, ARR, RNA} = req.body
-    const jumlahRR = RNO * ARR
+    const { hotel, RNO, ARR, RNA } = req.body;
+    const jumlahRR = RNO * ARR;
     try {
         await dataModel.create({
-            hotel : hotel,
-            RNO : RNO,
-            ARR : ARR,
-            RNA : RNA,
-            RR : jumlahRR,
+            hotel: hotel,
+            RNO: RNO,
+            ARR: ARR,
+            RNA: RNA,
+            RR: jumlahRR,
         });
         res.status(201).json({ msg: "Data berhasil ditambahkan" });
     } catch (error) {
@@ -29,4 +30,35 @@ export async function addData(req, res) {
     }
 }
 
+export async function updateData(req, res) {
+    const data = await dataModel.findOne({
+        attributes: ["id", "hotel", "RNO", "ARR", "RNA", "RR"],
+        where: {
+            id: req.params.id,
+        },
+    });
 
+    if (!data) return res.status(404).json({ msg: "Data tidak ditemukan!" });
+
+    const { hotel, RNO, ARR, RNA } = req.body;
+
+    // Proses update data
+    try {
+        await data.update(
+            {
+                hotel,
+                RNO,
+                ARR,
+                RNA,
+            },
+            {
+                where: {
+                    id: data.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "Data berhasil dirubah!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+}

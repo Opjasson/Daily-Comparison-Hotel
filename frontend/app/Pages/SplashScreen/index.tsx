@@ -2,8 +2,14 @@ import React from "react";
 import { ImageBackground, Text, View, StyleSheet, Image } from "react-native";
 import { BackgroundSP } from "../../Inventory/image";
 import Button from "@/app/Components/Moleculs/Button";
+import { NavigationProp } from "@react-navigation/native";
 
-const splashScreen = () => {
+interface props {
+    navigation : NavigationProp<any, any>
+}
+
+
+const splashScreen : React.FC<props> = ({navigation}) => {
     const handleAksi = () => {
         alert("hallo");
     };
@@ -16,7 +22,7 @@ const splashScreen = () => {
                 <Text style={styles.onText}>Daily Comparison</Text>
                 <Button
                     style={styles.button}
-                    aksi={handleAksi}
+                    aksi={() => navigation.navigate('Home')}
                     children="Get Started"
                 />
             </View>

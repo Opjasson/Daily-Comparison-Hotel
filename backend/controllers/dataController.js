@@ -2,6 +2,7 @@ import { response } from "express";
 import dataModel from "../models/dataModels.js";
 import { where } from "sequelize";
 
+// Mendapatkan semua data
 export async function getData(req, res) {
     try {
         const response = await dataModel.findAll({
@@ -13,6 +14,7 @@ export async function getData(req, res) {
     }
 }
 
+// Menambahkan data
 export async function addData(req, res) {
     const { hotel, RNO, ARR, RNA } = req.body;
     const jumlahRR = RNO * ARR;
@@ -30,6 +32,7 @@ export async function addData(req, res) {
     }
 }
 
+// Update data
 export async function updateData(req, res) {
     const data = await dataModel.findOne({
         attributes: ["id", "hotel", "RNO", "ARR", "RNA", "RR"],
@@ -58,6 +61,27 @@ export async function updateData(req, res) {
             }
         );
         res.status(200).json({ msg: "Data berhasil dirubah!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+}
+
+// Delete data
+export async function deleteData(req, res) {
+    const data = await dataModel.findOne({
+        attributes: ["id", "hotel", "RNO", "ARR", "RNA"],
+        where: {
+            id: req.params.id,
+        },
+    });
+    if (!data) return res.status(404).json({ msg: "Data tidak ditemukan!" });
+    try {
+        await dataModel.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+        res.status(200).json({ msg: "Data berhasil dihapus!" });
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }

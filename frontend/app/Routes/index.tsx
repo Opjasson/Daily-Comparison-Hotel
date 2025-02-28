@@ -14,6 +14,7 @@ const Route = () => {
             <Stack.Screen name="SplashScreen" component={splashScreen} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Input" component={inputData} />
+            <Stack.Screen name="Rank" component={Ranking} />
         </Stack.Navigator>
     );
 };

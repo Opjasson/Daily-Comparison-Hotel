@@ -14,10 +14,17 @@ const Home: React.FC<props> = ({ navigation }) => {
                 <Text style={styles.textNav}>Home</Text>
             </View>
             <View style={styles.topBar}>
-              <Button aksi={() => navigation.navigate('Input')} style={styles.button} children="INPUT"/>
-              <Button aksi={() => navigation.navigate('Input')} style={styles.button} children="RANK"/>
+                <Button
+                    aksi={() => navigation.navigate("Input")}
+                    style={styles.button}
+                    children="INPUT"
+                />
+                <Button
+                    aksi={() => navigation.navigate("Rank")}
+                    style={styles.button}
+                    children="RANKING"
+                />
             </View>
-           
         </View>
     );
 };
@@ -33,16 +40,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    button : {
-      backgroundColor : 'red',
-      width : 150,
-      padding : 8,
-      alignItems : 'center',
-      borderRadius : 9
+    button: {
+        backgroundColor: "red",
+        width: 150,
+        padding: 8,
+        alignItems: "center",
+        borderRadius: 9,
     },
-    topBar : {
-      flexDirection : 'row'
-    }
+    topBar: {
+        flexDirection: "row",
+    },
 });
 
 export default Home;

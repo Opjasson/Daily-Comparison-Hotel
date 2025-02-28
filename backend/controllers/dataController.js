@@ -13,17 +13,20 @@ export async function getData(req, res) {
 }
 
 export async function addData(req, res) {
-    const { hotel, RNO, ARR, RNA, RR } = req.body;
+    const { hotel, RNO, ARR, RNA} = req.body
+    const jumlahRR = RNO * ARR
     try {
         await dataModel.create({
-            hotel,
-            RNO,
-            ARR,
-            RNA,
-            RR,
+            hotel : hotel,
+            RNO : RNO,
+            ARR : ARR,
+            RNA : RNA,
+            RR : jumlahRR,
         });
         res.status(201).json({ msg: "Data berhasil ditambahkan" });
     } catch (error) {
-        res.status(400).json({ msg: error.message });
+        res.status(400).json({ msg: "internal error" });
     }
 }
+
+

@@ -2,6 +2,24 @@ import { response } from "express";
 import dataModel from "../models/dataModels.js";
 import { where } from "sequelize";
 
+
+// Get data by id
+export async function getDataById(req, res) {
+    try {
+        const response = await dataModel.findOne({
+            attributes: ["hotel", "RNO", "ARR", "RNA", "RR"],
+            where : {
+                id : req.params.id
+            }
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        response.status(500).json({ msg: error.message });
+    }
+}
+
+
+
 // Mendapatkan semua data
 export async function getData(req, res) {
     try {

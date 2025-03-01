@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Home, Input, Ranking, splashScreen } from "../Pages";
 import inputData from "../Pages/Input";
 import ButtonTabs from "../Components/Moleculs";
+import updatePage from "../Pages/Update/updatePage";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,7 @@ const Route = () => {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Input" component={inputData} />
             <Stack.Screen name="Rank" component={Ranking} />
+            <Stack.Screen name="Update" component={updatePage} />
         </Stack.Navigator>
     );
 };

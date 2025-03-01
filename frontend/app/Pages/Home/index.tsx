@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-    Text,
-    View,
-    StyleSheet,
-    ScrollView,
-    FlatList,
-    TouchableOpacity,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Table, Rows, Row } from "react-native-table-component";
@@ -15,12 +8,11 @@ interface props {
     navigation: NavigationProp<any, any>;
 }
 
-const handleAlet = (index : number) => {
-    alert(`Ini nomor ${index}`)
-}
+const handleAlet = () => {
+    alert(`Ini nomor ${index}`);
+};
 
 const Home: React.FC<props> = ({ navigation }) => {
-
     const [data, setData] = useState<
         { hotel: string; RNO: number; ARR: number; RNA: number; RR: number }[]
     >([]);
@@ -34,6 +26,7 @@ const Home: React.FC<props> = ({ navigation }) => {
         setData(users);
     };
 
+    // komponen did amount
     useEffect(() => {
         fetchData();
     }, []);
@@ -65,7 +58,11 @@ const Home: React.FC<props> = ({ navigation }) => {
                     }}>
                     <Row data={head} style={{ backgroundColor: "red" }} />
                     {data.map((item, index) => (
-                        <TouchableOpacity onPress={() => handleAlet(index)}>
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() =>
+                                navigation.navigate("Update", { index })
+                            }>
                             <Rows key={index} data={[Object.values(item)]} />
                         </TouchableOpacity>
                     ))}

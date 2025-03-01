@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
+import {
+    Text,
+    View,
+    StyleSheet,
+    ScrollView,
+    FlatList,
+    TouchableOpacity,
+} from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
-import axios from "axios";
+import { Table, Rows, Row } from "react-native-table-component";
 
 interface props {
     navigation: NavigationProp<any, any>;
 }
 
-const Home: React.FC<props> = ({ navigation }) => {
-    const [data, setData] = useState<{hotel : string, RNO : number, ARR : number, RNA : number, RR : number} []>([]);
+const handleAlet = (index : number) => {
+    alert(`Ini nomor ${index}`)
+}
 
+const Home: React.FC<props> = ({ navigation }) => {
+
+    const [data, setData] = useState<
+        { hotel: string; RNO: number; ARR: number; RNA: number; RR: number }[]
+    >([]);
+
+    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR"]);
+
+    // Get data lewat api
     const fetchData = async () => {
         const response = await fetch("http://192.168.94.220:8000/data");
         const users = await response.json();
@@ -20,6 +37,7 @@ const Home: React.FC<props> = ({ navigation }) => {
     useEffect(() => {
         fetchData();
     }, []);
+
     return (
         <View style={styles.container}>
             <View style={styles.navbar}>
@@ -38,31 +56,20 @@ const Home: React.FC<props> = ({ navigation }) => {
                 />
             </View>
 
-            <View style={styles.main}>
-                <ScrollView style={{ flexDirection: "row" }}>
-                    <View style={styles.content}>
-                        <Text style={{ width: 100 }}>Hotel</Text>
-                        <Text style={{ width: 100 }}>RNO</Text>
-                        <Text style={{ width: 100 }}>ARR</Text>
-                        <Text style={{ width: 100 }}>RNA</Text>
-                        <Text style={{ width: 100 }}>RR</Text>
-                    </View>
+            <View style={styles.contentCon}>
+                <Table
+                    borderStyle={{
+                        borderColor: "#111",
+                        borderLeftWidth: 1,
+                        borderRightWidth: 2,
+                    }}>
+                    <Row data={head} style={{ backgroundColor: "red" }} />
                     {data.map((item, index) => (
-                        <View key={index}
-                            style={{
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                                borderWidth: 2,
-                                width: 300
-                            }}>
-                            <Text>{item.hotel}</Text>
-                            <Text>{item.RNO}</Text>
-                            <Text>{item.ARR}</Text>
-                            <Text>{item.RNA}</Text>
-                            <Text>{item.RR}</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => handleAlet(index)}>
+                            <Rows key={index} data={[Object.values(item)]} />
+                        </TouchableOpacity>
                     ))}
-                </ScrollView>
+                </Table>
             </View>
         </View>
     );
@@ -88,17 +95,14 @@ const styles = StyleSheet.create({
     },
     topBar: {
         flexDirection: "row",
-        borderWidth: 3,
         justifyContent: "space-around",
+        marginBottom: 30,
     },
-    main: {
-        flex: 1,
-        backgroundColor: "#1111",
-    },
-    content: {
-        flexDirection: "row",
-        justifyContent: "space-between",
+    contentCon: {
+        width: 400,
         borderWidth: 2,
+        marginHorizontal: "auto",
+        borderRadius: 2,
     },
 });
 

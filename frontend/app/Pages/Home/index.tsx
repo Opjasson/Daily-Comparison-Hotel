@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
 
@@ -25,6 +25,25 @@ const Home: React.FC<props> = ({ navigation }) => {
                     children="RANKING"
                 />
             </View>
+
+            <View style={styles.main}>
+                <ScrollView style={{ flexDirection: "row" }}>
+                    <View style={styles.content}>
+                        <Text style={{ width: 100 }}>Hotel</Text>
+                        <Text style={{ width: 100 }}>RNO</Text>
+                        <Text style={{ width: 100 }}>ARR</Text>
+                        <Text style={{ width: 100 }}>RNA</Text>
+                        <Text style={{ width: 100 }}>RR</Text>
+                    </View>
+                    <View style={styles.content}>
+                        <Text style={{ width: 100 }}>Premier</Text>
+                        <Text style={{ width: 100 }}>30000</Text>
+                        <Text style={{ width: 100 }}>20</Text>
+                        <Text style={{ width: 100 }}>30</Text>
+                        <Text style={{ width: 100 }}>400000</Text>
+                    </View>
+                </ScrollView>
+            </View>
         </View>
     );
 };
@@ -49,6 +68,18 @@ const styles = StyleSheet.create({
     },
     topBar: {
         flexDirection: "row",
+        borderWidth: 3,
+        justifyContent: "space-around",
+    },
+    main: {
+        flex: 1,
+        backgroundColor: "#1111",
+        
+    },
+    content: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        borderWidth: 2,
     },
 });
 

@@ -1,12 +1,15 @@
 import React from "react";
 import { View } from "react-native";
-import {} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationIndependentTree } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Home, Input, Ranking, splashScreen } from "../Pages";
 import inputData from "../Pages/Input";
+import ButtonTabs from "../Components/Moleculs";
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 
 const Route = () => {
     return (

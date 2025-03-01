@@ -1,13 +1,25 @@
-import React from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
+import axios from "axios";
 
 interface props {
     navigation: NavigationProp<any, any>;
 }
 
 const Home: React.FC<props> = ({ navigation }) => {
+    const [data, setData] = useState<{hotel : string, RNO : number, ARR : number, RNA : number, RR : number} []>([]);
+
+    const fetchData = async () => {
+        const response = await fetch("http://192.168.94.220:8000/data");
+        const users = await response.json();
+        setData(users);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <View style={styles.container}>
             <View style={styles.navbar}>
@@ -35,13 +47,21 @@ const Home: React.FC<props> = ({ navigation }) => {
                         <Text style={{ width: 100 }}>RNA</Text>
                         <Text style={{ width: 100 }}>RR</Text>
                     </View>
-                    <View style={styles.content}>
-                        <Text style={{ width: 100 }}>Premier</Text>
-                        <Text style={{ width: 100 }}>30000</Text>
-                        <Text style={{ width: 100 }}>20</Text>
-                        <Text style={{ width: 100 }}>30</Text>
-                        <Text style={{ width: 100 }}>400000</Text>
-                    </View>
+                    {data.map((item, index) => (
+                        <View key={index}
+                            style={{
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                                borderWidth: 2,
+                                width: 300
+                            }}>
+                            <Text>{item.hotel}</Text>
+                            <Text>{item.RNO}</Text>
+                            <Text>{item.ARR}</Text>
+                            <Text>{item.RNA}</Text>
+                            <Text>{item.RR}</Text>
+                        </View>
+                    ))}
                 </ScrollView>
             </View>
         </View>
@@ -74,7 +94,6 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         backgroundColor: "#1111",
-        
     },
     content: {
         flexDirection: "row",

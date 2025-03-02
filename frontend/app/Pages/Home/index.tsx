@@ -8,9 +8,7 @@ interface props {
     navigation: NavigationProp<any, any>;
 }
 
-const handleAlet = () => {
-    alert(`Ini nomor ${index}`);
-};
+
 
 const Home: React.FC<props> = ({ navigation }) => {
     const [data, setData] = useState<
@@ -22,8 +20,8 @@ const Home: React.FC<props> = ({ navigation }) => {
     // Get data lewat api
     const fetchData = async () => {
         const response = await fetch("http://192.168.94.220:8000/data");
-        const users = await response.json();
-        setData(users);
+        const data = await response.json();
+        setData(data);
     };
 
     // komponen did amount
@@ -106,7 +104,7 @@ const styles = StyleSheet.create({
     contentCon: {
         width: 400,
         borderWidth: 2,
-        marginHorizontal: "auto",
+        marginHorizontal: 5,
         borderRadius: 2,
     },
 });

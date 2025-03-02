@@ -24,7 +24,7 @@ export async function getDataById(req, res) {
 export async function getData(req, res) {
     try {
         const response = await dataModel.findAll({
-            attributes: ["hotel", "RNO", "ARR", "RNA", "RR"],
+            attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR"],
         });
         res.status(200).json(response);
     } catch (error) {
@@ -63,6 +63,7 @@ export async function updateData(req, res) {
 
     const { hotel, RNO, ARR, RNA } = req.body;
 
+    const hitungRR = RNO * ARR
     // Proses update data
     try {
         await data.update(
@@ -71,6 +72,7 @@ export async function updateData(req, res) {
                 RNO,
                 ARR,
                 RNA,
+                RR : hitungRR
             },
             {
                 where: {

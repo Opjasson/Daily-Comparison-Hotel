@@ -14,7 +14,7 @@ const handleAlet = () => {
 
 const Home: React.FC<props> = ({ navigation }) => {
     const [data, setData] = useState<
-        { hotel: string; RNO: number; ARR: number; RNA: number; RR: number }[]
+        {id : number; hotel: string; RNO: number; ARR: number; RNA: number; RR: number }[]
     >([]);
 
     const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR"]);
@@ -57,15 +57,23 @@ const Home: React.FC<props> = ({ navigation }) => {
                         borderRightWidth: 2,
                     }}>
                     <Row data={head} style={{ backgroundColor: "red" }} />
-                    {data.map((item, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            onPress={() =>
-                                navigation.navigate("Update", { index })
-                            }>
-                            <Rows key={index} data={[Object.values(item)]} />
-                        </TouchableOpacity>
-                    ))}
+                    {data.map((item, index) => {
+                        const {id, ...rest} = item
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() =>
+                                    navigation.navigate("Update", {
+                                        id: item.id, data: rest 
+                                    })
+                                }>
+                                <Rows
+                                    key={index}
+                                    data={[Object.values(rest)]}
+                                />
+                            </TouchableOpacity>
+                        );
+                    })}
                 </Table>
             </View>
         </View>

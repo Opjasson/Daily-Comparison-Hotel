@@ -25,6 +25,8 @@ const Ranking : React.FC<props> = ({navigation}) => {
                   children="RANKING"
               />
           </View>
+
+       
       </View>
   );
 }
@@ -49,6 +51,14 @@ const styles = StyleSheet.create({
     },
     topBar: {
         flexDirection: "row",
+        justifyContent: "space-around",
+        marginBottom: 30,
+    },
+    contentCon: {
+        width: 400,
+        borderWidth: 2,
+        marginHorizontal: "auto",
+        borderRadius: 2,
     },
 });
 export default Ranking

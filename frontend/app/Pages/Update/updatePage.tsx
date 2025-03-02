@@ -93,6 +93,12 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
             </View>
             <View style={styles.topBar}>
                 <Button
+                    aksi={() => navigation.navigate("Home")}
+                    style={styles.button}
+                    children="HOME"
+                />
+
+                <Button
                     aksi={() => navigation.navigate("Input")}
                     style={styles.button}
                     children="INPUT"
@@ -195,10 +201,12 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                 </View>
                 {/* End Form */}
 
-                
                 <Button
                     aksi={sendUpdate}
-                    style={styles.button}
+                    style={[
+                        styles.button,
+                        { marginHorizontal: "auto", width: 190, marginTop: 10 },
+                    ]}
                     children="Kirim"
                 />
             </ScrollView>
@@ -214,6 +222,8 @@ const styles = StyleSheet.create({
     },
     navbar: {
         padding: 7,
+        marginBottom: 40,
+        backgroundColor: "#c9b91a",
     },
     container: {
         flex: 1,
@@ -222,13 +232,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     button: {
-        backgroundColor: "red",
-        width: 150,
+        backgroundColor: "#dbcc3d",
+        width: 100,
         padding: 8,
         alignItems: "center",
         borderRadius: 9,
-        marginTop: 10,
-        marginHorizontal: "auto"
     },
     topBar: {
         flexDirection: "row",

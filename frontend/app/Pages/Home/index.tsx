@@ -17,6 +17,7 @@ const Home: React.FC<props> = ({ navigation }) => {
             ARR: number;
             RNA: number;
             RR: number;
+            createdAt: string
         }[]
     >([]);
 
@@ -58,6 +59,23 @@ const Home: React.FC<props> = ({ navigation }) => {
                 />
             </View>
 
+            {/* Tanggal Data Masuk */}
+            <Text
+                style={{
+                    marginLeft: 7,
+                    marginBottom: 8,
+                    fontSize: 18,
+                    fontWeight: "bold",
+                }}>
+                {new Date(data[0]?.["createdAt"]).toLocaleDateString("id-ID", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })}
+            </Text>
+            {/* end tanggal masuk */}
+
+            {/* Table content */}
             <View style={styles.contentCon}>
                 <Table
                     borderStyle={{
@@ -67,7 +85,7 @@ const Home: React.FC<props> = ({ navigation }) => {
                     }}>
                     <Row data={head} style={{ backgroundColor: "#e6e6d5" }} />
                     {data.map((item, index) => {
-                        const { id, ...rest } = item;
+                        const { id, createdAt, ...rest } = item;
                         return (
                             <TouchableOpacity
                                 key={index}
@@ -86,6 +104,23 @@ const Home: React.FC<props> = ({ navigation }) => {
                     })}
                 </Table>
             </View>
+            {/* End Table Content */}
+
+            {/* Tanggal Data Masuk */}
+            <Text
+                style={{
+                    marginLeft: 7,
+                    marginBottom: 8,
+                    fontSize: 18,
+                    fontWeight: "bold",
+                }}>
+                {new Date(data[0]?.["createdAt"]).toLocaleDateString("id-ID", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })}
+            </Text>
+            {/* end tanggal masuk */}
         </View>
     );
 };
@@ -120,6 +155,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginHorizontal: 5,
         borderRadius: 2,
+        marginBottom: 10
     },
 });
 

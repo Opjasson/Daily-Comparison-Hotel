@@ -24,7 +24,7 @@ export async function getDataById(req, res) {
 export async function getData(req, res) {
     try {
         const response = await dataModel.findAll({
-            attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR"],
+            attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR", "createdAt"],
         });
         res.status(200).json(response);
     } catch (error) {

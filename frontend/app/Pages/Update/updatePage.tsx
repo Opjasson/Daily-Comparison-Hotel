@@ -1,6 +1,17 @@
-import { NavigationProp, RouteProp, useNavigation } from "@react-navigation/native";
+import {
+    NavigationProp,
+    RouteProp,
+    useNavigation,
+} from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TextInput, ScrollView, Alert } from "react-native";
+import {
+    Text,
+    View,
+    StyleSheet,
+    TextInput,
+    ScrollView,
+    Alert,
+} from "react-native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Picker } from "@react-native-picker/picker";
 import Home from "../Home";
@@ -10,12 +21,12 @@ interface props {
     route: RouteProp<any, any>;
 }
 
-
 const updatePage: React.FC<props> = ({ navigation, route }) => {
     // Get id menggunakan params di previos page
     const index = route.params?.id;
     const sendData = route.params?.data;
 
+    // State = Penyimpanan data sementara
     const [data, setData] = useState(sendData);
 
     const [hotel, setHotel] = useState(sendData.hotel);
@@ -23,28 +34,31 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     const [ARR, setARR] = useState<number>(sendData.ARR);
     const [RNA, setRNA] = useState<number>(sendData.RNA);
     const [RR, setRR] = useState<number>(sendData.RR);
+    // End state
 
-interface props {
-    navigation: NavigationProp<any,any>
-}
+    // Pemberian Type data (Interface)
+    interface props {
+        navigation: NavigationProp<any, any>;
+    }
 
-interface RootStackParamList {
-    Home : undefined
-}
+    interface RootStackParamList {
+        Home: undefined;
+    }
+    // End Interface
 
-const pindahHal = useNavigation<NavigationProp<RootStackParamList>>()
-
-    const info= () => {
+    // Handle alert sesudah berhasil update
+    const pindahHal = useNavigation<NavigationProp<RootStackParamList>>();
+    const info = () => {
         Alert.alert("Data Berhasil Dirubah", "Kembali Ke Home", [
             {
                 text: "Home",
-                onPress: () => pindahHal.navigate("Home")
-                ,
+                onPress: () => pindahHal.navigate("Home"),
                 style: "default",
             },
         ]);
-    }
+    };
 
+    // Handle updateButton
     const sendUpdate = async () => {
         try {
             const response = await fetch(
@@ -70,9 +84,7 @@ const pindahHal = useNavigation<NavigationProp<RootStackParamList>>()
         info();
     };
 
-    useEffect(() => {
-        
-    }, [])
+    useEffect(() => {}, []);
 
     return (
         <View style={styles.container}>
@@ -95,7 +107,6 @@ const pindahHal = useNavigation<NavigationProp<RootStackParamList>>()
             {/* Form Update */}
             <ScrollView>
                 <View style={styles.containerForm}>
-                    <Text>{hotel}</Text>
                     <Text style={styles.textLabel}>Hotel</Text>
                     <View
                         style={{
@@ -182,7 +193,9 @@ const pindahHal = useNavigation<NavigationProp<RootStackParamList>>()
                         value={`${RR}`}
                     />
                 </View>
+                {/* End Form */}
 
+                
                 <Button
                     aksi={sendUpdate}
                     style={styles.button}
@@ -214,6 +227,8 @@ const styles = StyleSheet.create({
         padding: 8,
         alignItems: "center",
         borderRadius: 9,
+        marginTop: 10,
+        marginHorizontal: "auto"
     },
     topBar: {
         flexDirection: "row",

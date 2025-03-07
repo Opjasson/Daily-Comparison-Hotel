@@ -56,21 +56,18 @@ const inputData: React.FC<props> = ({navigation}) => {
     // Handle updateButton
     const tambahData = async () => {
         try {
-            const response = await fetch(
-                `http://192.168.94.220:8000/data`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        hotel: hotel,
-                        RNO: RNO,
-                        ARR: ARR,
-                        RNA: RNA,
-                    }),
-                }
-            );
+            await fetch(`http://192.168.217.220:8000/data`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    hotel: hotel,
+                    RNO: RNO,
+                    ARR: ARR,
+                    RNA: RNA,
+                }),
+            });
         } catch (error) {
             alert("ada error nih");
         }

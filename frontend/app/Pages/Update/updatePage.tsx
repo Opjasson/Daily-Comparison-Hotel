@@ -14,7 +14,9 @@ import {
 } from "react-native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Picker } from "@react-native-picker/picker";
+import { FaRegTrashAlt } from "react-icons/fa";
 import Home from "../Home";
+import { navigate } from "expo-router/build/global-state/routing";
 
 interface props {
     navigation: NavigationProp<any, any>;
@@ -58,11 +60,27 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
         ]);
     };
 
+
+    // Handle deleteButton
+    const handleDelette = async () => {
+        try {
+            await fetch(`http://192.168.217.220:8000/data/${index}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            info()
+        } catch (error) {
+            alert("Ups ada error.");
+        }
+    };
+
     // Handle updateButton
     const sendUpdate = async () => {
         try {
             const response = await fetch(
-                `http://192.168.94.220:8000/data/${index}`,
+                `http://192.168.217.220:8000/data/${index}`,
                 {
                     method: "PATCH",
                     headers: {
@@ -209,6 +227,20 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                     ]}
                     children="Kirim"
                 />
+
+                <Button
+                    aksi={handleDelette}
+                    style={[
+                        styles.button,
+                        {
+                            marginHorizontal: "auto",
+                            width: 190,
+                            marginTop: 10,
+                            backgroundColor: "red",
+                        },
+                    ]}>
+                    Delete
+                </Button>
             </ScrollView>
         </View>
     );

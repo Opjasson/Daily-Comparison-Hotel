@@ -34,7 +34,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     const [RNO, setRNO] = useState<number>(sendData.RNO);
     const [ARR, setARR] = useState<number>(sendData.ARR);
     const [RNA, setRNA] = useState<number>(sendData.RNA);
-    const [RR, setRR] = useState<number>(sendData.RR);
+    const [RR, setRR] = useState<number>();
     // End state
 
     // Pemberian Type data (Interface)
@@ -151,7 +151,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     };
     return (
         <View style={styles.container}>
-              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Update</Text>
             </View>
@@ -237,29 +237,33 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                         placeholder="ARR"
                     />
 
-                    <Text style={styles.textLabel}>RNA</Text>
+                    <Text style={styles.textLabel}>RNA(Nilai Otomatis)</Text>
                     <TextInput
+                        editable={false}
                         style={{
                             borderWidth: 1,
                             marginBottom: 5,
                             borderRadius: 5,
+                            backgroundColor: "#d9d5d4",
                         }}
                         placeholder="RNA"
                         keyboardType="numeric"
                         value={String(RNA)}
                     />
 
-                    <Text style={styles.textLabel}>RR</Text>
+                    <Text style={styles.textLabel}>RR(Nilai Otomatis)</Text>
                     <TextInput
+                        editable={false}
                         style={{
                             borderWidth: 1,
                             marginBottom: 5,
                             borderRadius: 5,
+                            backgroundColor: "#d9d5d4",
                         }}
                         // onChangeText={(text) => setRR(sendData.RR)}
                         placeholder="RR"
                         keyboardType="numeric"
-                        value={`${RR}`}
+                        value={`${RNO * ARR}`}
                     />
                 </View>
                 {/* End Form */}

@@ -66,7 +66,11 @@ const Ranking: React.FC<props> = ({ navigation }) => {
                     <Text style={styles.textHead}>Ranking Hari Ini</Text>
                     <Text style={styles.textHead}>{formatTanggal}</Text>
                 </View>
-
+                <View style={styles.mainRank}>
+                    <Text style={styles.textRank}>No</Text>
+                    <Text style={styles.textRank}>Hotel</Text>
+                    <Text style={styles.textRank}>RR</Text>
+                </View>
                 {dataAsli.filter((item) => item.createdAt === formatTanggal)
                     .length > 0 ? (
                     dataAsli

@@ -28,7 +28,7 @@ const Home: React.FC<props> = ({ navigation }) => {
         }[]
     >([]);
 
-    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR", "OCCP"]);
+    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR", "OCCP%"]);
 
     // Get data lewat api
     const fetchData = async () => {
@@ -82,7 +82,7 @@ const Home: React.FC<props> = ({ navigation }) => {
             {/* Table content */}
 
             {Object.keys(groupData).map((key, index) => (
-                <View style={styles.contentCon}>
+                <View key={index} style={styles.contentCon}>
                     <Text key={index}>{key}</Text>
                     <View
                         style={{
@@ -147,7 +147,7 @@ const Home: React.FC<props> = ({ navigation }) => {
                                         <Text>{item.RR}</Text>
                                     </View>
                                     <View style={{ width: 80 }}>
-                                        <Text>{item.OCCP}</Text>
+                                        <Text>{item.OCCP}%</Text>
                                     </View>
                                 </TouchableOpacity>
                             )),

@@ -8,8 +8,7 @@ import {
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
-import { Table, Rows, Row } from "react-native-table-component";
-import _, { rest } from "lodash";
+import _ from "lodash";
 
 interface props {
     navigation: NavigationProp<any, any>;
@@ -50,8 +49,10 @@ const Home: React.FC<props> = ({ navigation }) => {
 
     // grouping data berdasarkan tanggal data dibuat
     const groupData = _.groupBy(dataAsli, "createdAt");
+    console.log(groupData);
     
-
+    
+    // Mengembalikan menjadi view / tampilan
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
@@ -132,7 +133,6 @@ const Home: React.FC<props> = ({ navigation }) => {
                     ]}
                 </View>
             ))}
-
             {/* End Table Content */}
         </View>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { StatusBar, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationIndependentTree } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -9,7 +9,6 @@ import updatePage from "../Pages/Update/updatePage";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 
 const Route = () => {
     return (

@@ -11,6 +11,7 @@ import {
     TextInput,
     ScrollView,
     Alert,
+    StatusBar,
 } from "react-native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Picker } from "@react-native-picker/picker";
@@ -77,6 +78,7 @@ const inputData: React.FC<props> = ({navigation}) => {
 
     return (
         <View style={styles.container}>
+              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Input</Text>
             </View>

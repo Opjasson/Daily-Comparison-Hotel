@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, Text, View, StyleSheet, Image } from "react-native";
+import { ImageBackground, Text, View, StyleSheet, Image, StatusBar } from "react-native";
 import { BackgroundSP } from "../../Inventory/image";
 import Button from "@/app/Components/Moleculs/Button";
 import { NavigationProp } from "@react-navigation/native";
@@ -15,6 +15,7 @@ const splashScreen : React.FC<props> = ({navigation}) => {
     };
     return (
         <View style={styles.area}>
+              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.container}>
                 <View>
                     <Image style={styles.imgLogo} source={BackgroundSP} />

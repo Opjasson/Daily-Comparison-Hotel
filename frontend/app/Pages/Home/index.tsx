@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Table, Rows, Row } from "react-native-table-component";
@@ -9,6 +9,7 @@ interface props {
 }
 
 const Home: React.FC<props> = ({ navigation }) => {
+    
     const [data, setData] = useState<
         {
             id: number;
@@ -37,6 +38,7 @@ const Home: React.FC<props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Home</Text>
             </View>

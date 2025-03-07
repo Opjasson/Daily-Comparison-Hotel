@@ -1,7 +1,7 @@
 import Button from "@/app/Components/Moleculs/Button";
 import { NavigationProp } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, StatusBar } from "react-native";
 
 interface props {
     navigation: NavigationProp<any, any>;
@@ -25,6 +25,7 @@ const Ranking: React.FC<props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Ranking</Text>
             </View>

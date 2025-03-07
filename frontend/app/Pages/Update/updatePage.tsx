@@ -11,12 +11,11 @@ import {
     TextInput,
     ScrollView,
     Alert,
+    StatusBar,
 } from "react-native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Picker } from "@react-native-picker/picker";
-import { FaRegTrashAlt } from "react-icons/fa";
-import Home from "../Home";
-import { navigate } from "expo-router/build/global-state/routing";
+
 
 interface props {
     navigation: NavigationProp<any, any>;
@@ -106,6 +105,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Update</Text>
             </View>

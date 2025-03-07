@@ -23,11 +23,12 @@ const Home: React.FC<props> = ({ navigation }) => {
             ARR: number;
             RNA: number;
             RR: number;
+            OCCP: number;
             createdAt: string;
         }[]
     >([]);
 
-    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR"]);
+    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR", "OCCP"]);
 
     // Get data lewat api
     const fetchData = async () => {
@@ -93,43 +94,63 @@ const Home: React.FC<props> = ({ navigation }) => {
                         }}>
                         <Text style={{ width: 70 }}>{head[0]}</Text>
                         <Text>{head[1]}</Text>
-                        <Text style={{ width: 90 }}>{head[2]}</Text>
+                        <Text
+                            style={{
+                                width: 90,
+                                paddingLeft: 6,
+                                backgroundColor: "#ded5d3",
+                            }}>
+                            {head[2]}
+                        </Text>
                         <Text>{head[3]}</Text>
-                        <Text style={{ width: 90 }}>{head[4]}</Text>
+                        <Text
+                            style={{
+                                width: 90,
+                                paddingLeft: 6,
+                                backgroundColor: "#ded5d3",
+                            }}>
+                            {head[4]}
+                        </Text>
+                        <Text style={{ width: 80 }}>{head[5]}</Text>
                     </View>
 
                     {[
-                        Object.values(groupData[key]).sort((a, b) => b.id - a.id).map((item, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                onPress={() =>
-                                    navigation.navigate("Update", {
-                                        id: item.id,
-                                        data: item,
-                                    })
-                                }
-                                style={{
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                    marginBottom: 5
-                                }}>
-                                <View style={{ width: 70 }}>
-                                    <Text>{item.hotel}</Text>
-                                </View>
-                                <View>
-                                    <Text>{item.RNO}</Text>
-                                </View>
-                                <View style={{ width: 90 }}>
-                                    <Text>{item.ARR}</Text>
-                                </View>
-                                <View>
-                                    <Text>{item.RNA}</Text>
-                                </View>
-                                <View style={{ width: 90 }}>
-                                    <Text>{item.RR}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        )),
+                        Object.values(groupData[key])
+                            .sort((a, b) => b.id - a.id)
+                            .map((item, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    onPress={() =>
+                                        navigation.navigate("Update", {
+                                            id: item.id,
+                                            data: item,
+                                        })
+                                    }
+                                    style={{
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                        marginBottom: 5,
+                                    }}>
+                                    <View style={{ width: 70 }}>
+                                        <Text>{item.hotel}</Text>
+                                    </View>
+                                    <View style={{ width: 35 }}>
+                                        <Text>{item.RNO}</Text>
+                                    </View>
+                                    <View style={{ width: 90, paddingLeft: 4 }}>
+                                        <Text>{item.ARR}</Text>
+                                    </View>
+                                    <View style={{ width: 35 }}>
+                                        <Text>{item.RNA}</Text>
+                                    </View>
+                                    <View style={{ width: 90, paddingLeft: 4 }}>
+                                        <Text>{item.RR}</Text>
+                                    </View>
+                                    <View style={{ width: 80 }}>
+                                        <Text>{item.OCCP}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )),
                     ]}
                 </View>
             ))}

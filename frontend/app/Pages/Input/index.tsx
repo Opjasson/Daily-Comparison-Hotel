@@ -22,10 +22,9 @@ interface props {
     route: RouteProp<any, any>;
 }
 
-const inputData: React.FC<props> = ({navigation}) => {
-
+const inputData: React.FC<props> = ({ navigation }) => {
     // State untuk menyimpan data sementara
-    const [hotel, setHotel] = useState();
+    const [hotel, setHotel] = useState("");
     const [RNO, setRNO] = useState<number>();
     const [ARR, setARR] = useState<number>();
     const [RNA, setRNA] = useState<number>();
@@ -75,10 +74,58 @@ const inputData: React.FC<props> = ({navigation}) => {
         info();
     };
 
+    // setting otomatis RNA
 
+
+    const settingRna = (value : string) => {
+        switch (value) {
+            case "Premier":
+                setRNA(58);
+                setHotel(value)
+                break;
+
+            case "Riez Palace":
+                setRNA(91);
+                setHotel(value)
+                break;
+
+            case "Karlita":
+                setRNA(156);
+                setHotel(value)
+                break;
+
+            case "Bahari Inn":
+                setRNA(78);
+                setHotel(value)
+                break;
+
+            case "Prime Biz":
+                setRNA(99);
+                setHotel(value)
+                break;
+
+            case "Khas":
+                setRNA(98);
+                setHotel(value)
+                break;
+
+            case "Plaza":
+                setRNA(75);
+                setHotel(value)
+                break;
+
+            case "Kotta Go":
+                setRNA(52);
+                setHotel(value)
+                break;
+
+            default:
+                break;
+        }
+    };
     return (
         <View style={styles.container}>
-              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Input</Text>
             </View>
@@ -114,7 +161,7 @@ const inputData: React.FC<props> = ({navigation}) => {
                         }}>
                         <Picker
                             selectedValue={hotel}
-                            onValueChange={(value, index) => setHotel(value)}>
+                            onValueChange={(value, index) => settingRna(value)}>
                             <Picker.Item value={"Premier"} label="Premier" />
                             <Picker.Item
                                 value={"Riez Palace"}
@@ -166,25 +213,25 @@ const inputData: React.FC<props> = ({navigation}) => {
                             marginBottom: 5,
                             borderRadius: 5,
                         }}
-                        onChangeText={(text) => setRNA(Number(text))}
+                        value={String(RNA)}
                         placeholder="RNA"
                         keyboardType="numeric"
                     />
-
-                   
                 </View>
                 {/* End Form */}
 
-                
                 <Button
                     aksi={tambahData}
-                    style={[ styles.button, {marginHorizontal: 'auto', width: 190, marginTop: 10} ]}
+                    style={[
+                        styles.button,
+                        { marginHorizontal: "auto", width: 190, marginTop: 10 },
+                    ]}
                     children="Kirim"
                 />
             </ScrollView>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     textNav: {
@@ -221,5 +268,4 @@ const styles = StyleSheet.create({
     },
 });
 
-
-export default inputData
+export default inputData;

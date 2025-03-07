@@ -103,6 +103,52 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
 
     useEffect(() => {}, []);
 
+    const settingRna = (value: string) => {
+        switch (value) {
+            case "Premier":
+                setRNA(58);
+                setHotel(value);
+                break;
+
+            case "Riez Palace":
+                setRNA(91);
+                setHotel(value);
+                break;
+
+            case "Karlita":
+                setRNA(156);
+                setHotel(value);
+                break;
+
+            case "Bahari Inn":
+                setRNA(78);
+                setHotel(value);
+                break;
+
+            case "Prime Biz":
+                setRNA(99);
+                setHotel(value);
+                break;
+
+            case "Khas":
+                setRNA(98);
+                setHotel(value);
+                break;
+
+            case "Plaza":
+                setRNA(75);
+                setHotel(value);
+                break;
+
+            case "Kotta Go":
+                setRNA(52);
+                setHotel(value);
+                break;
+
+            default:
+                break;
+        }
+    };
     return (
         <View style={styles.container}>
               <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
@@ -140,7 +186,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                         }}>
                         <Picker
                             selectedValue={hotel}
-                            onValueChange={(value, index) => setHotel(value)}>
+                            onValueChange={(value, index) => settingRna(value)}>
                             <Picker.Item
                                 value={data.hotel}
                                 label={data.hotel}
@@ -198,10 +244,9 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                             marginBottom: 5,
                             borderRadius: 5,
                         }}
-                        onChangeText={(text) => setRNA(Number(text))}
                         placeholder="RNA"
                         keyboardType="numeric"
-                        value={`${RNA}`}
+                        value={String(RNA)}
                     />
 
                     <Text style={styles.textLabel}>RR</Text>

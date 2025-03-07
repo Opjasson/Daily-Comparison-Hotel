@@ -7,7 +7,7 @@ import { where } from "sequelize";
 export async function getDataById(req, res) {
     try {
         const response = await dataModel.findOne({
-            attributes: ["hotel", "RNO", "ARR", "RNA", "RR"],
+            attributes: ["hotel", "RNO", "ARR", "RNA", "RR", "OCCP"],
             where : {
                 id : req.params.id
             }
@@ -24,7 +24,7 @@ export async function getDataById(req, res) {
 export async function getData(req, res) {
     try {
         const response = await dataModel.findAll({
-            attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR", "createdAt"],
+            attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR", "OCCP", "createdAt"],
         });
         res.status(200).json(response);
     } catch (error) {
@@ -36,6 +36,7 @@ export async function getData(req, res) {
 export async function addData(req, res) {
     const { hotel, RNO, ARR, RNA } = req.body;
     const jumlahRR = RNO * ARR;
+    const jumlahOCCP = (RNO / RNA) * 100
     try {
         await dataModel.create({
             hotel: hotel,
@@ -43,6 +44,7 @@ export async function addData(req, res) {
             ARR: ARR,
             RNA: RNA,
             RR: jumlahRR,
+            OCCP: jumlahOCCP
         });
         res.status(201).json({ msg: "Data berhasil ditambahkan" });
     } catch (error) {
@@ -64,6 +66,7 @@ export async function updateData(req, res) {
     const { hotel, RNO, ARR, RNA } = req.body;
 
     const hitungRR = RNO * ARR
+     const jumlahOCCP = (RNO / RNA) * 100;
     // Proses update data
     try {
         await data.update(
@@ -72,7 +75,8 @@ export async function updateData(req, res) {
                 RNO,
                 ARR,
                 RNA,
-                RR : hitungRR
+                RR : hitungRR,
+                OCCP : jumlahOCCP
             },
             {
                 where: {

@@ -42,6 +42,13 @@ const data = db.define(
                 notEmpty: true,
             },
         },
+        OCCP: {
+            type: DataTypes.DECIMAL(10, 4),
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
     },
     {
         freezeTableName: true,

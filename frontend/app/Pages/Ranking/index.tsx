@@ -8,7 +8,10 @@ interface props {
 }
 
 const Ranking: React.FC<props> = ({ navigation }) => {
-    const [data, setData] = useState<{ hotel: string; RR: number }[]>([]);
+    const [data, setData] = useState<
+        { hotel: string; RR: number; createdAt: string }[]
+    >([]);
+    const [tanggal, setTanggal] = useState(new Date());
 
     async function getData() {
         const response = await fetch("http://192.168.217.220:8000/data");
@@ -19,13 +22,22 @@ const Ranking: React.FC<props> = ({ navigation }) => {
         setData(sortData);
     }
 
+    // merubah data tanggal menjadi format tahun-bulan-tanggal
+    const dataAsli = data.map((item) => {
+        const tanggalBaru = item.createdAt.split("T")[0];
+        return { ...item, createdAt: tanggalBaru };
+    });
+    const dina = new Date();
+    const formatTanggal = dina.toISOString().slice(0, 10);
+
+    // memuat getData setiap halaman di buka
     useEffect(() => {
         getData();
     }, []);
 
     return (
         <View style={styles.container}>
-              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Ranking</Text>
             </View>
@@ -52,16 +64,27 @@ const Ranking: React.FC<props> = ({ navigation }) => {
             <View style={styles.containerRank}>
                 <View style={styles.headRank}>
                     <Text style={styles.textHead}>Ranking Hari Ini</Text>
-                    <Text style={styles.textHead}>2 Maret 2025</Text>
+                    <Text style={styles.textHead}>{formatTanggal}</Text>
                 </View>
 
-                {data.map((item, index) => (
-                    <View key={index} style={styles.mainRank}>
-                        <Text style={styles.textRank}>{index + 1}</Text>
-                        <Text style={styles.textRank}>{item.hotel}</Text>
-                        <Text style={styles.textRank}>{item.RR}</Text>
+                {dataAsli.filter((item) => item.createdAt === formatTanggal)
+                    .length > 0 ? (
+                    dataAsli
+                        .filter((item) => item.createdAt === formatTanggal)
+                        .map((item, index) => (
+                            <View key={index} style={styles.mainRank}>
+                                <Text style={styles.textRank}>{index + 1}</Text>
+                                <Text style={styles.textRank}>
+                                    {item.hotel}
+                                </Text>
+                                <Text style={styles.textRank}>{item.RR}</Text>
+                            </View>
+                        ))
+                ) : (
+                    <View>
+                        <Text>Anda Belum Masukan Data</Text>
                     </View>
-                ))}
+                )}
             </View>
         </View>
     );

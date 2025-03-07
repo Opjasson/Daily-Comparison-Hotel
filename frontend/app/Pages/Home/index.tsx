@@ -80,9 +80,9 @@ const Home: React.FC<props> = ({ navigation }) => {
 
             {/* Table content */}
 
-            {Object.keys(groupData).map((key) => (
+            {Object.keys(groupData).map((key, index) => (
                 <View style={styles.contentCon}>
-                    <Text>{key}</Text>
+                    <Text key={index}>{key}</Text>
                     <View
                         style={{
                             flexDirection: "row",

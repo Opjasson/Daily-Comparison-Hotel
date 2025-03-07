@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
+import {
+    Text,
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    StatusBar,
+} from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import Button from "@/app/Components/Moleculs/Button";
 import { Table, Rows, Row } from "react-native-table-component";
+import _, { rest } from "lodash";
 
 interface props {
     navigation: NavigationProp<any, any>;
 }
 
 const Home: React.FC<props> = ({ navigation }) => {
-    
     const [data, setData] = useState<
         {
             id: number;
@@ -18,7 +24,7 @@ const Home: React.FC<props> = ({ navigation }) => {
             ARR: number;
             RNA: number;
             RR: number;
-            createdAt: string
+            createdAt: string;
         }[]
     >([]);
 
@@ -35,6 +41,16 @@ const Home: React.FC<props> = ({ navigation }) => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    // merubah data tanggal menjadi format tahun-bulan-tanggal
+    const dataAsli = data.map((item) => {
+        const tanggalBaru = item.createdAt.split("T")[0];
+        return { ...item, createdAt: tanggalBaru };
+    });
+
+    // grouping data berdasarkan tanggal data dibuat
+    const groupData = _.groupBy(dataAsli, "createdAt");
+    
 
     return (
         <View style={styles.container}>
@@ -61,68 +77,63 @@ const Home: React.FC<props> = ({ navigation }) => {
                 />
             </View>
 
-            {/* Tanggal Data Masuk */}
-            <Text
-                style={{
-                    marginLeft: 7,
-                    marginBottom: 8,
-                    fontSize: 18,
-                    fontWeight: "bold",
-                }}>
-                {new Date(data[0]?.["createdAt"]).toLocaleDateString("id-ID", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                })}
-            </Text>
-            {/* end tanggal masuk */}
-
             {/* Table content */}
-            <View style={styles.contentCon}>
-                <Table
-                    borderStyle={{
-                        borderColor: "#111",
-                        borderLeftWidth: 1,
-                        borderRightWidth: 2,
-                    }}>
-                    <Row data={head} style={{ backgroundColor: "#e6e6d5" }} />
-                    {data.map((item, index) => {
-                        const { id, createdAt, ...rest } = item;
-                        return (
+
+            {Object.keys(groupData).map((key) => (
+                <View style={styles.contentCon}>
+                    <Text>{key}</Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            marginBottom: 3,
+                            borderBottomWidth: 2,
+                            backgroundColor: "#ede9e8",
+                        }}>
+                        <Text style={{ width: 70 }}>{head[0]}</Text>
+                        <Text>{head[1]}</Text>
+                        <Text style={{ width: 90 }}>{head[2]}</Text>
+                        <Text>{head[3]}</Text>
+                        <Text style={{ width: 90 }}>{head[4]}</Text>
+                    </View>
+
+                    {[
+                        Object.values(groupData[key]).sort((a, b) => b.id - a.id).map((item, index) => (
                             <TouchableOpacity
                                 key={index}
                                 onPress={() =>
                                     navigation.navigate("Update", {
                                         id: item.id,
-                                        data: rest,
+                                        data: item,
                                     })
-                                }>
-                                <Rows
-                                    key={index}
-                                    data={[Object.values(rest)]}
-                                />
+                                }
+                                style={{
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    marginBottom: 5
+                                }}>
+                                <View style={{ width: 70 }}>
+                                    <Text>{item.hotel}</Text>
+                                </View>
+                                <View>
+                                    <Text>{item.RNO}</Text>
+                                </View>
+                                <View style={{ width: 90 }}>
+                                    <Text>{item.ARR}</Text>
+                                </View>
+                                <View>
+                                    <Text>{item.RNA}</Text>
+                                </View>
+                                <View style={{ width: 90 }}>
+                                    <Text>{item.RR}</Text>
+                                </View>
                             </TouchableOpacity>
-                        );
-                    })}
-                </Table>
-            </View>
-            {/* End Table Content */}
+                        )),
+                    ]}
+                </View>
+            ))}
 
-            {/* Tanggal Data Masuk */}
-            <Text
-                style={{
-                    marginLeft: 7,
-                    marginBottom: 8,
-                    fontSize: 18,
-                    fontWeight: "bold",
-                }}>
-                {new Date(data[0]?.["createdAt"]).toLocaleDateString("id-ID", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                })}
-            </Text>
-            {/* end tanggal masuk */}
+            {/* End Table Content */}
         </View>
     );
 };
@@ -154,10 +165,10 @@ const styles = StyleSheet.create({
     },
     contentCon: {
         width: 400,
-        borderWidth: 2,
+
         marginHorizontal: 5,
         borderRadius: 2,
-        marginBottom: 10
+        marginBottom: 10,
     },
 });
 

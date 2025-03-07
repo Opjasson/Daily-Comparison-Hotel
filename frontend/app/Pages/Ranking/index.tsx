@@ -55,7 +55,7 @@ const Ranking: React.FC<props> = ({ navigation }) => {
                 </View>
 
                 {data.map((item, index) => (
-                    <View style={styles.mainRank}>
+                    <View key={index} style={styles.mainRank}>
                         <Text style={styles.textRank}>{index + 1}</Text>
                         <Text style={styles.textRank}>{item.hotel}</Text>
                         <Text style={styles.textRank}>{item.RR}</Text>

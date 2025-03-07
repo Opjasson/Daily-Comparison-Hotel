@@ -5,7 +5,6 @@ import { NavigationIndependentTree } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Home, Input, Ranking, splashScreen } from "../Pages";
 import inputData from "../Pages/Input";
-import ButtonTabs from "../Components/Moleculs";
 import updatePage from "../Pages/Update/updatePage";
 
 const Stack = createStackNavigator();

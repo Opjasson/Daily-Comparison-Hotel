@@ -24,7 +24,7 @@ interface props {
 
 const inputData: React.FC<props> = ({ navigation }) => {
     // State untuk menyimpan data sementara
-    const [hotel, setHotel] = useState("");
+    const [hotel, setHotel] = useState<string>();
     const [RNO, setRNO] = useState<number>();
     const [ARR, setARR] = useState<number>();
     const [RNA, setRNA] = useState<number>();
@@ -75,48 +75,51 @@ const inputData: React.FC<props> = ({ navigation }) => {
     };
 
     // setting otomatis RNA
-
-
-    const settingRna = (value : string) => {
+    const settingRna = (value: string) => {
         switch (value) {
+            case "undefined":
+                setRNA(0);
+                setHotel(value);
+                break;
+
             case "Premier":
                 setRNA(58);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Riez Palace":
                 setRNA(91);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Karlita":
                 setRNA(156);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Bahari Inn":
                 setRNA(78);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Prime Biz":
                 setRNA(99);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Khas":
                 setRNA(98);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Plaza":
                 setRNA(75);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             case "Kotta Go":
                 setRNA(52);
-                setHotel(value)
+                setHotel(value);
                 break;
 
             default:
@@ -162,6 +165,10 @@ const inputData: React.FC<props> = ({ navigation }) => {
                         <Picker
                             selectedValue={hotel}
                             onValueChange={(value, index) => settingRna(value)}>
+                            <Picker.Item
+                                value={"undefined"}
+                                label="Pilih Nama Hotel"
+                            />
                             <Picker.Item value={"Premier"} label="Premier" />
                             <Picker.Item
                                 value={"Riez Palace"}
@@ -206,22 +213,43 @@ const inputData: React.FC<props> = ({ navigation }) => {
                         placeholder="ARR"
                     />
 
-                    <Text style={styles.textLabel}>RNA</Text>
+                    <Text style={styles.textLabel}>RNA(Nilai Otomatis)</Text>
                     <TextInput
                         style={{
                             borderWidth: 1,
                             marginBottom: 5,
                             borderRadius: 5,
+                            backgroundColor: "#d9d5d4",
                         }}
-                        value={String(RNA)}
+                        editable={false}
+                        value={String(RNA) === "undefined" ? "0" : String(RNA)}
                         placeholder="RNA"
                         keyboardType="numeric"
+                    />
+
+                    <Text style={styles.textLabel}>RR(Nilai Otomatis)</Text>
+                    <TextInput
+                        editable={false}
+                        style={{
+                            borderWidth: 1,
+                            marginBottom: 5,
+                            borderRadius: 5,
+                            backgroundColor: "#d9d5d4",
+                        }}
+                        placeholder="RR"
+                        keyboardType="numeric"
+                        value={
+                            String(RNO) === "undefined"
+                                ? "0"
+                                : String((RNO ?? 0) * (ARR ?? 0))
+                        }
                     />
                 </View>
                 {/* End Form */}
 
                 <Button
                     aksi={tambahData}
+                    disabled={RNO && ARR && RNA ? false : true}
                     style={[
                         styles.button,
                         { marginHorizontal: "auto", width: 190, marginTop: 10 },

@@ -260,7 +260,6 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                             borderRadius: 5,
                             backgroundColor: "#d9d5d4",
                         }}
-                        // onChangeText={(text) => setRR(sendData.RR)}
                         placeholder="RR"
                         keyboardType="numeric"
                         value={`${RNO * ARR}`}

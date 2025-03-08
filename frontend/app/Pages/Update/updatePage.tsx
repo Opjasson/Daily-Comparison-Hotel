@@ -269,6 +269,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
 
                 <Button
                     aksi={sendUpdate}
+                    disabled={RNO && ARR && RNA ? false : true}
                     style={[
                         styles.button,
                         { marginHorizontal: "auto", width: 190, marginTop: 10 },

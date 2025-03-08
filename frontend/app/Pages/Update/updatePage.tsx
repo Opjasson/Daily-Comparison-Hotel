@@ -16,7 +16,6 @@ import {
 import Button from "@/app/Components/Moleculs/Button";
 import { Picker } from "@react-native-picker/picker";
 
-
 interface props {
     navigation: NavigationProp<any, any>;
     route: RouteProp<any, any>;
@@ -59,7 +58,6 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
         ]);
     };
 
-
     // Handle deleteButton
     const handleDelette = async () => {
         try {
@@ -69,7 +67,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                     "Content-Type": "application/json",
                 },
             });
-            info()
+            info();
         } catch (error) {
             alert("Ups ada error.");
         }

@@ -141,16 +141,16 @@ const Home: React.FC<props> = ({ navigation }) => {
                                     <View style={{ width: 70 }}>
                                         <Text>{item.hotel}</Text>
                                     </View>
-                                    <View style={{ width: 90, paddingLeft: 4 }}>
+                                    <View style={{ width: 90, paddingLeft: 0 }}>
                                         <Text>{item.RR.toLocaleString("id-ID")}</Text>
                                     </View>
-                                    <View style={{ width: 90, paddingLeft: 4 }}>
+                                    <View style={{ width: 70}}>
                                         <Text>{item.ARR.toLocaleString("id-ID")}</Text>
                                     </View>
-                                    <View style={{ width: 35 }}>
+                                    <View style={{ width: 37 }}>
                                         <Text>{item.RNA}</Text>
                                     </View>
-                                    <View style={{ width: 35 }}>
+                                    <View style={{ width: 37 }}>
                                         <Text>{item.RNO}</Text>
                                     </View>
                                     <View style={{ width: 80 }}>

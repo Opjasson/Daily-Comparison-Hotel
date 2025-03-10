@@ -28,7 +28,14 @@ const Home: React.FC<props> = ({ navigation }) => {
         }[]
     >([]);
 
-    const [head, setHead] = useState(["Hotel", "RNO", "ARR", "RNA", "RR", "OCCP%"]);
+    const [head, setHead] = useState([
+        "Hotel",
+        "RNO",
+        "ARR",
+        "RNA",
+        "RR",
+        "OCCP%",
+    ]);
 
     // Get data lewat api
     const fetchData = async () => {
@@ -51,12 +58,11 @@ const Home: React.FC<props> = ({ navigation }) => {
     // grouping data berdasarkan tanggal data dibuat
     const groupData = _.groupBy(dataAsli, "createdAt");
     console.log(groupData);
-    
-    
+
     // Mengembalikan menjadi view / tampilan
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#3bb9f7" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Home</Text>
             </View>
@@ -92,25 +98,26 @@ const Home: React.FC<props> = ({ navigation }) => {
                             borderBottomWidth: 2,
                             backgroundColor: "#ede9e8",
                         }}>
-                        <Text style={{ width: 70 }}>{head[0]}</Text>
-                        <Text>{head[1]}</Text>
+                        <Text style={{ width: 60 }}>{head[0]}</Text>
                         <Text
                             style={{
-                                width: 90,
+                                width: 80,
+                                paddingLeft: 6,
+                                backgroundColor: "#ded5d3",
+                            }}>
+                            {head[4]}
+                        </Text>
+                        <Text
+                            style={{
+                                width: 70,
                                 paddingLeft: 6,
                                 backgroundColor: "#ded5d3",
                             }}>
                             {head[2]}
                         </Text>
                         <Text>{head[3]}</Text>
-                        <Text
-                            style={{
-                                width: 90,
-                                paddingLeft: 6,
-                                backgroundColor: "#ded5d3",
-                            }}>
-                            {head[4]}
-                        </Text>
+                        <Text>{head[1]}</Text>
+
                         <Text style={{ width: 80 }}>{head[5]}</Text>
                     </View>
 
@@ -134,17 +141,17 @@ const Home: React.FC<props> = ({ navigation }) => {
                                     <View style={{ width: 70 }}>
                                         <Text>{item.hotel}</Text>
                                     </View>
-                                    <View style={{ width: 35 }}>
-                                        <Text>{item.RNO}</Text>
+                                    <View style={{ width: 90, paddingLeft: 4 }}>
+                                        <Text>{item.RR.toLocaleString("id-ID")}</Text>
                                     </View>
                                     <View style={{ width: 90, paddingLeft: 4 }}>
-                                        <Text>{item.ARR}</Text>
+                                        <Text>{item.ARR.toLocaleString("id-ID")}</Text>
                                     </View>
                                     <View style={{ width: 35 }}>
                                         <Text>{item.RNA}</Text>
                                     </View>
-                                    <View style={{ width: 90, paddingLeft: 4 }}>
-                                        <Text>{item.RR}</Text>
+                                    <View style={{ width: 35 }}>
+                                        <Text>{item.RNO}</Text>
                                     </View>
                                     <View style={{ width: 80 }}>
                                         <Text>{item.OCCP}%</Text>
@@ -167,13 +174,13 @@ const styles = StyleSheet.create({
     navbar: {
         padding: 7,
         marginBottom: 40,
-        backgroundColor: "#c9b91a",
+        backgroundColor: "#3bb9f7",
     },
     container: {
         flex: 1,
     },
     button: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#3bb9f7",
         width: 100,
         padding: 8,
         alignItems: "center",

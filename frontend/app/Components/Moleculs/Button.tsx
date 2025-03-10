@@ -11,7 +11,7 @@ interface Buttonprops {
 const Button = ({style,aksi,children,disabled} : Buttonprops) => {
   return (
     <TouchableOpacity disabled={disabled} style={style} onPress={aksi}>
-        <Text style={{ color: "white", fontWeight: 800 }}>{children}</Text>
+        <Text style={{ color:"white", fontWeight: 800 }}>{children}</Text>
     </TouchableOpacity>
   )
 }

@@ -128,7 +128,7 @@ const inputData: React.FC<props> = ({ navigation }) => {
     };
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#03c0ff" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Input</Text>
             </View>
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     navbar: {
         padding: 7,
         marginBottom: 40,
-        backgroundColor: "#c9b91a",
+        backgroundColor: "#03c0ff",
     },
     container: {
         flex: 1,
@@ -278,11 +278,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     button: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#03c0ff",
         width: 100,
         padding: 8,
         alignItems: "center",
         borderRadius: 9,
+        color: "black",
     },
     topBar: {
         flexDirection: "row",

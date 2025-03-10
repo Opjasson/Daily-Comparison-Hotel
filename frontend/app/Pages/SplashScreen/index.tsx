@@ -15,12 +15,11 @@ const splashScreen : React.FC<props> = ({navigation}) => {
     };
     return (
         <View style={styles.area}>
-              <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+              <StatusBar backgroundColor="#fff" barStyle="dark-content" />
             <View style={styles.container}>
                 <View>
                     <Image style={styles.imgLogo} source={BackgroundSP} />
                 </View>
-                <Text style={styles.onText}>Daily Comparison</Text>
                 <Button
                     style={styles.button}
                     aksi={() => navigation.navigate('Home')}
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     area: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#fff",
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
@@ -49,13 +48,13 @@ const styles = StyleSheet.create({
     container: {
         height: 500,
         justifyContent: "center",
-        backgroundColor: "#c9b91a",
+        backgroundColor: "#fff",
         borderRadius: 10,
         elevation: 9,
         position: "relative",
     },
     button: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#111",
         width: 200,
         padding: 8,
         borderRadius: 10,
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontStyle: "italic",
         fontWeight: 900,
-        color: "white",
+        color: "black",
         marginHorizontal: "auto",
     },
 });

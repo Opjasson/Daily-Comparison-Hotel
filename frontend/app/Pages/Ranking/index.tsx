@@ -37,7 +37,7 @@ const Ranking: React.FC<props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#3bb9f7" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Ranking</Text>
             </View>
@@ -81,7 +81,7 @@ const Ranking: React.FC<props> = ({ navigation }) => {
                                 <Text style={styles.textRank}>
                                     {item.hotel}
                                 </Text>
-                                <Text style={styles.textRank}>{item.RR}</Text>
+                                <Text style={styles.textRank}>{item.RR.toLocaleString("id-ID")}</Text>
                             </View>
                         ))
                 ) : (
@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
     navbar: {
         padding: 7,
         marginBottom: 40,
-        backgroundColor: "#c9b91a",
+        backgroundColor: "#3bb9f7",
     },
     container: {
         flex: 1,
     },
     button: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#3bb9f7",
         width: 100,
         padding: 8,
         alignItems: "center",

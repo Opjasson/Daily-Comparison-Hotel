@@ -1,4 +1,4 @@
-import BackgroundSP from "./hotelSP.png"
+import BackgroundSP from "./premier.jpg"
 
 export {
     BackgroundSP

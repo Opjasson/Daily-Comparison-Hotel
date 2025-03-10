@@ -149,7 +149,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     };
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="#c9b91a" barStyle="light-content" />
+            <StatusBar backgroundColor="#3bb9f7" barStyle="light-content" />
             <View style={styles.navbar}>
                 <Text style={styles.textNav}>Update</Text>
             </View>
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     navbar: {
         padding: 7,
         marginBottom: 40,
-        backgroundColor: "#c9b91a",
+        backgroundColor: "#3bb9f7",
     },
     container: {
         flex: 1,
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     button: {
-        backgroundColor: "#dbcc3d",
+        backgroundColor: "#3bb9f7",
         width: 100,
         padding: 8,
         alignItems: "center",

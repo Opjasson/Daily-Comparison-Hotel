@@ -15,14 +15,17 @@ const splashScreen : React.FC<props> = ({navigation}) => {
     };
     return (
         <View style={styles.area}>
-              <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+            <StatusBar backgroundColor="#fff" barStyle="dark-content" />
             <View style={styles.container}>
                 <View>
                     <Image style={styles.imgLogo} source={BackgroundSP} />
+                    <Text style={{ textAlign: "center", color: "#363636", fontWeight: '600' }}>
+                        Daily Comparison
+                    </Text>
                 </View>
                 <Button
                     style={styles.button}
-                    aksi={() => navigation.navigate('Home')}
+                    aksi={() => navigation.navigate("Home")}
                     children="Get Started"
                 />
             </View>

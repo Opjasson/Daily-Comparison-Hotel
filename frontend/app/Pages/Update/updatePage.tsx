@@ -61,7 +61,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     // Handle deleteButton
     const handleDelette = async () => {
         try {
-            await fetch(`http://192.168.217.220:8000/data/${index}`, {
+            await fetch(`http://192.168.90.220:8000/data/${index}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
     const sendUpdate = async () => {
         try {
             const response = await fetch(
-                `http://192.168.217.220:8000/data/${index}`,
+                `http://192.168.90.220:8000/data/${index}`,
                 {
                     method: "PATCH",
                     headers: {

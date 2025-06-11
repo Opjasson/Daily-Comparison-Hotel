@@ -56,7 +56,7 @@ const inputData: React.FC<props> = ({ navigation }) => {
     // Handle updateButton
     const tambahData = async () => {
         try {
-            await fetch(`http://192.168.217.220:8000/data`, {
+            await fetch(`http://192.168.90.220:8000/data`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

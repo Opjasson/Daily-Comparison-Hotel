@@ -77,7 +77,7 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
                     "Content-Type": "application/json",
                 },
             });
-            info();
+            info2();
         } catch (error) {
             alert("Ups ada error.");
         }

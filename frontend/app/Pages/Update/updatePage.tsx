@@ -58,6 +58,16 @@ const updatePage: React.FC<props> = ({ navigation, route }) => {
         ]);
     };
 
+    const info2 = () => {
+        Alert.alert("Data Berhasil Dihapus", "Kembali Ke Home", [
+            {
+                text: "Home",
+                onPress: () => pindahHal.navigate("Home"),
+                style: "default",
+            },
+        ]);
+    };
+
     // Handle deleteButton
     const handleDelette = async () => {
         try {

@@ -23,7 +23,7 @@ const Home: React.FC<props> = ({ navigation }) => {
             ARR: number;
             RNA: number;
             RR: number;
-            OCCP: number;
+            OCC: number;
             createdAt: string;
         }[]
     >([]);
@@ -154,7 +154,7 @@ const Home: React.FC<props> = ({ navigation }) => {
                                         <Text>{item.RNO}</Text>
                                     </View>
                                     <View style={{ width: 80 }}>
-                                        <Text>{item.OCCP}%</Text>
+                                        <Text>{item.OCC}%</Text>
                                     </View>
                                 </TouchableOpacity>
                             )),

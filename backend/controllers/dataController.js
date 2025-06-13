@@ -26,6 +26,7 @@ export async function getData(req, res) {
         const response = await dataModel.findAll({
             attributes: ["id" ,"hotel", "RNO", "ARR", "RNA", "RR", "OCC", "createdAt"],
         });
+        
         res.status(200).json(response);
     } catch (error) {
         response.status(500).json({ msg: error.message });

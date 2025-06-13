@@ -42,7 +42,7 @@ const data = db.define(
                 notEmpty: true,
             },
         },
-        OCCP: {
+        OCC: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
             validate: {

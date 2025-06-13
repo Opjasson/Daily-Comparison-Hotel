@@ -34,7 +34,7 @@ const Home: React.FC<props> = ({ navigation }) => {
         "ARR",
         "RNA",
         "RR",
-        "OCCP%",
+        "OCC%",
     ]);
 
     // Get data lewat api

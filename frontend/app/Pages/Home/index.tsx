@@ -39,7 +39,7 @@ const Home: React.FC<props> = ({ navigation }) => {
 
     // Get data lewat api
     const fetchData = async () => {
-        const response = await fetch("http://192.168.200.220:8000/data");
+        const response = await fetch("http://Number-Ip-Address:8000/data");
         const data = await response.json();
         setData(data);
     };
@@ -142,10 +142,14 @@ const Home: React.FC<props> = ({ navigation }) => {
                                         <Text>{item.hotel}</Text>
                                     </View>
                                     <View style={{ width: 90, paddingLeft: 0 }}>
-                                        <Text>{item.RR.toLocaleString("id-ID")}</Text>
+                                        <Text>
+                                            {item.RR.toLocaleString("id-ID")}
+                                        </Text>
                                     </View>
-                                    <View style={{ width: 70}}>
-                                        <Text>{item.ARR.toLocaleString("id-ID")}</Text>
+                                    <View style={{ width: 70 }}>
+                                        <Text>
+                                            {item.ARR.toLocaleString("id-ID")}
+                                        </Text>
                                     </View>
                                     <View style={{ width: 37 }}>
                                         <Text>{item.RNA}</Text>
